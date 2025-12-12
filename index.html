@@ -1,347 +1,300 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Akash Raj — Portfolio</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    /* -------------------------
-       GLOBAL
-       ------------------------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: "Poppins", sans-serif; color: #333; background: #fff; }
-    p { color: rgb(85,85,85); }
-    a, .btn { transition: all 300ms ease; }
-    nav, .nav-links { display: flex; }
-    a { color: black; text-decoration: none; }
-    a:hover { color: grey; text-decoration: underline; text-underline-offset: 1rem; }
-
-    /* -------------------------
-       NAV
-       ------------------------- */
-    nav {
-      justify-content: space-around;
-      align-items: center;
-      height: 17vh;
-    }
-    .nav-links { gap: 2rem; list-style: none; font-size: 1.25rem; align-items:center; }
-    .logo { font-size: 2rem; font-weight: 600; }
-
-    /* Hamburger */
-    #hamburger-nav { display: none; }
-    .hamburger-menu { position: relative; display: inline-block; }
-    .hamburger-icon {
-      display: flex; flex-direction: column; justify-content: space-between;
-      height: 24px; width: 30px; cursor: pointer;
-    }
-    .hamburger-icon span {
-      width: 100%; height: 2px; background-color: black;
-      transition: all 0.3s ease-in-out;
-    }
-    .menu-links {
-      position: absolute; top: 100%; right: 0; background: white;
-      width: fit-content; max-height: 0; overflow: hidden; transition: all 0.3s ease-in-out;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
-    .menu-links a { display: block; padding: 10px; text-align: center; font-size: 1rem; color: black; }
-    .menu-links.open { max-height: 300px; }
-
-    .hamburger-icon.open span:first-child { transform: rotate(45deg) translate(6px, 6px); }
-    .hamburger-icon.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
-    .hamburger-icon.open span:last-child { transform: rotate(-45deg) translate(6px, -6px); }
-
-    /* -------------------------
-       HERO / SECTIONS
-       ------------------------- */
-    section { padding-top: 4vh; min-height: 60vh; margin: 0 6rem; }
-    .section-container { display: flex; gap: 4rem; align-items: center; }
-    #profile { display: flex; justify-content: center; gap: 5rem; height: 80vh; }
-    .section__pic-container { display:flex; height: 400px; width: 400px; margin:auto 0; border-radius: 1rem; overflow: hidden; }
-    .section__pic-container img { width:100%; height:100%; object-fit: cover; }
-    .section__text { align-self: center; text-align: center; }
-    .section__text__p2 { font-size: 1.75rem; margin-bottom: 1rem; font-weight: 600; }
-    .title { font-size: 3rem; text-align: center; margin-bottom: 0.5rem; }
-
-    /* Socials and buttons */
-    #socials-container { display:flex; justify-content:center; gap:1rem; margin-top:1rem; }
-    .icon { cursor:pointer; height:2rem; }
-    .btn-container { display:flex; justify-content:center; gap:1rem; margin-top:1rem; }
-    .btn { font-weight:600; padding:1rem; width:8rem; border-radius:2rem; cursor:pointer; }
-    .btn-color-1 { background: #353535; color: #fff; border: none; }
-    .btn-color-2 { background: none; border: 1px solid rgb(163,163,163); color: #000; }
-
-    /* -------------------------
-       ABOUT
-       ------------------------- */
-    #about { position: relative; margin-top: 2rem; }
-    .about-containers { gap: 2rem; margin: 2rem 0; display:flex; flex-wrap:wrap; }
-    .about-details-container { display:flex; flex-direction:column; justify-content:center; flex:1; }
-    .about-pic { border-radius: 1rem; width: 375px; height: 375px; object-fit: cover; }
-    .details-container {
-      padding: 1.5rem; flex:1; background: white; border-radius: 1rem; border: 0.1rem solid rgb(163,163,163); text-align:center;
-    }
-
-    /* Skill articles */
-    .article-container { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content: center; }
-    article { display:flex; align-items:center; gap:0.75rem; width: 220px; background: #fafafa; padding: 0.75rem; border-radius: 8px; }
-    article .icon { height: 1.25rem; }
-
-    /* -------------------------
-       EXPERIENCE & PROJECTS
-       ------------------------- */
-    #experience { margin-top: 2rem; }
-    .experience-sub-title { color: rgb(85,85,85); font-weight:600; font-size:1.5rem; margin-bottom:1rem; text-align:center; }
-    #projects { margin-top: 2rem; display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; }
-
-    .color-container { border-color: rgb(163,163,163); background: rgb(250,250,250); border-radius: 1rem; padding: 1rem; width: 320px; }
-    .project-img { border-radius: 1rem; width: 100%; height: 180px; object-fit: cover; }
-    .project-title { margin: 1rem 0; color: black; font-weight:600; text-align:center; }
-
-    /* -------------------------
-       CONTACT / FOOTER
-       ------------------------- */
-    #contact { display:flex; justify-content:center; flex-direction:column; height: 70vh; margin-top:2rem; }
-    .contact-info-upper-container { display:flex; justify-content:center; border-radius:1rem; border:0.1rem solid rgb(163,163,163); background: #fff; margin: 2rem auto; padding: 0.5rem; }
-    .contact-info-container { display:flex; align-items:center; gap:0.5rem; margin:1rem; }
-    footer { height: 20vh; margin: 2rem 1rem; display:flex; align-items:center; justify-content:center; }
-
-    /* -------------------------
-       RESPONSIVE
-       ------------------------- */
-    @media screen and (max-width: 1400px) {
-      #profile { height: 83vh; margin-bottom: 6rem; }
-      .about-containers { flex-wrap: wrap; }
-      #contact, #projects { height: fit-content; }
-      section { margin: 0 4rem; }
-    }
-
-    @media screen and (max-width: 1200px) {
-      #desktop-nav { display: none; }
-      #hamburger-nav { display: flex; }
-      #experience, .experience-details-container { margin-top: 2rem; }
-      #profile, .section-container { display: block; margin: 0 2rem; }
-      .arrow { display: none; }
-      section { height: fit-content; margin: 0 5%; }
-      .section__pic-container { width: 275px; height: 275px; margin: 0 auto 2rem; }
-      .about-containers { margin-top: 0; }
-    }
-
-    @media screen and (max-width: 600px) {
-      #contact, footer { height: 40vh; }
-      #profile { height: 83vh; margin-bottom: 0; }
-      article { font-size: 0.95rem; width: 48%; }
-      footer nav { height: fit-content; margin-bottom: 2rem; }
-      .about-containers, .contact-info-upper-container, .btn-container { flex-wrap: wrap; }
-      .contact-info-container { margin:0; }
-      .nav-links { flex-direction: column; gap: 0.5rem; text-align:center; }
-      .section__pic-container { width: auto; height: 46vw; justify-content:center; }
-      .section__text__p2 { font-size: 1.25rem; }
-      .title { font-size: 2rem; }
-      .text-container { text-align: justify; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- NAV -->
-  <nav>
-    <div class="logo">Akash Raj</div>
-
-    <!-- Desktop nav -->
-    <ul class="nav-links" id="desktop-nav">
-      <li><a href="#profile">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="assets/Akash-Raj.pdf" target="_blank" rel="noopener">Resume</a></li>
-    </ul>
-
-    <!-- Hamburger nav -->
-    <div id="hamburger-nav" class="hamburger-menu">
-      <div class="hamburger-icon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">Akash</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
-      <div class="menu-links">
-        <a href="#profile">Home</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a href="assets/Akash-Raj.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- HERO / PROFILE -->
-  <section id="profile" class="section-container">
-    <div class="section__pic-container">
-      <!-- Replace with your headshot -->
-      <img src="assets/profile-pic.jpg" alt="Akash Raj" />
-    </div>
-
-    <div class="section__text">
-      <h1 class="title">Hi, I'm Akash</h1>
-      <p class="section__text__p2">Java Developer · Spring Boot · REST APIs</p>
-      <p class="section__text__p1">Building scalable backend systems and RESTful services. Experienced in Core Java, Spring Boot, microservices fundamentals and database design.</p>
-
-      <div id="socials-container">
-        <!-- Replace with your social links or icons -->
-        <a class="icon" href="https://github.com/Akash77312" target="_blank" rel="noopener">GitHub</a>
-        <a class="icon" href="#" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-
-      <div class="btn-container">
-        <button class="btn btn-color-1" onclick="location.href='assets/Akash-Raj.pdf'">Download CV</button>
-        <button class="btn btn-color-2" onclick="location.href='#projects'">Projects</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-containers section-container">
-      <img src="assets/about-pic.jpg" alt="About" class="about-pic" />
-
-      <div class="about-details-container">
-        <div class="details-container">
-          <h2 class="experience-sub-title">About Me</h2>
-          <p class="text-container">I am a Java Developer with hands-on experience in building REST APIs and microservices using Spring Boot. I have worked on backend features, database integrations, and message-based components. I enjoy designing clean, maintainable code and solving performance issues.</p>
+    <nav id="hamburger-nav">
+      <div class="logo">Akash Raj</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
 
-        <div class="details-container" style="margin-top:1rem;">
-          <h3 class="experience-sub-title">Core Skills</h3>
-          <div class="article-container">
-            <article>
-              <img src="assets/checkmark.png" alt="icon" class="icon">
-              <div><h4>Java</h4><p>Intermediate</p></div>
-            </article>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
 
-            <article>
-              <img src="assets/checkmark.png" alt="icon" class="icon">
-              <div><h4>Spring Boot</h4><p>Intermediate</p></div>
-            </article>
+    <!-- PROFILE / HERO -->
+    <section id="profile">
+      <div class="section__pic-container">
+        <!-- ORIGINAL profile image preserved -->
+        <img src="./assets/akash.png" alt="John Doe profile picture" />
+      </div>
 
-            <article>
-              <img src="assets/checkmark.png" alt="icon" class="icon">
-              <div><h4>MySQL / SQL</h4><p>Intermediate</p></div>
-            </article>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Akash Raj</h1>
 
-            <article>
-              <img src="assets/checkmark.png" alt="icon" class="icon">
-              <div><h4>Git</h4><p>Intermediate</p></div>
-            </article>
+        <!-- Changed role text to Java Developer (keeps original placement) -->
+        <p class="section__text__p2">Java Developer · Spring Boot · REST APIs</p>
+
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('https://drive.google.com/file/d/1N9wOBYCJwl9pFvjpYuQueknecL5u3VzE/view?usp=drive_link')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+
+        <div id="socials-container">
+          <!-- original social icons and links preserved -->
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/akash-raj-905891220/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/Akash77312'"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+
+      <div class="section-container">
+        <div class="section__pic-container">
+          <!-- original about image preserved -->
+          <img src="./assets/about-pic.jpeg" alt="Profile picture" class="about-pic" />
+        </div>
+
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img src="./assets/experience.png" alt="Experience icon" class="icon" />
+              <h3>Experience</h3>
+              <p>Beginner <br />Frontend Development</p>
+            </div>
+
+            <div class="details-container">
+              <img src="./assets/education.png" alt="Education icon" class="icon" />
+              <h3>Education</h3>
+              <p>Bachelors Degree in<br />Information Technology</p>
+            </div>
+          </div>
+
+          <div class="text-container">
+            <p>
+              Hello, My name is Akash Raj from Bhagalpur, Bihar. Currently i am a
+              3rd year student pursuing my Bachelors Degree in Information
+              Technology from Netaji subhash Engineering college. My Strength
+              are i am self motivating person. My hobbies are exploring new
+              places, playing cricket ,kabbadi and watching movie. <br />
+              Lastly i am quick learner from my past mistakes and experiences.
+              <br />
+              Thank you
+            </p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2 class="experience-sub-title">Experience</h2>
+      <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'" />
+    </section>
 
-    <div class="details-container" style="max-width:900px; margin: 0 auto;">
-      <p><strong>Training / Projects</strong></p>
-      <ul style="margin-top:0.5rem; text-align:left; padding-left:1rem;">
-        <li>Core Java, Collections, OOPs</li>
-        <li>REST API development with Spring Boot</li>
-        <li>Database design and SQL (MySQL)</li>
-        <li>Microservices fundamentals, basic container understanding</li>
-      </ul>
-    </div>
-  </section>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2 class="experience-sub-title">Projects</h2>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Frontend Development</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>HTML</h3><p>Intermediate</p></div>
+              </article>
 
-    <!-- Existing MERN project (kept) -->
-    <div class="color-container">
-      <img src="assets/project-mern.png" alt="MERN Project" class="project-img">
-      <h3 class="project-title">E-Commerce (MERN)</h3>
-      <p style="text-align:center; margin:0.5rem 0;">Full-stack E-commerce app — frontend in React, backend in Node/Express, MongoDB for storage. (Kept as demonstrative full-stack project.)</p>
-      <div class="btn-container" style="justify-content:center; margin-top:1rem;">
-        <button class="btn btn-color-2" onclick="window.open('https://github.com/your-mern-repo','_blank')">Github</button>
-        <button class="btn btn-color-2" onclick="window.open('#','_blank')">View</button>
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>CSS</h3><p>Intermediate</p></div>
+              </article>
+
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>JavaScript</h3><p>Intermediate</p></div>
+              </article>
+
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>React Js</h3><p>Basic</p></div>
+              </article>
+
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>Bootstrap</h3><p>Basic</p></div>
+              </article>
+
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>Material UI</h3><p>Intermediate</p></div>
+              </article>
+            </div>
+          </div>
+
+          <div class="details-container">
+            <h2 class="experience-sub-title">Backend Development</h2>
+
+            <!-- Updated backend skills to Java/Spring/MySQL/Git, icons preserved -->
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>Java</h3><p>Intermediate</p></div>
+              </article>
+
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>Spring Boot</h3><p>Intermediate</p></div>
+              </article>
+
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>MySQL / SQL</h3><p>Intermediate</p></div>
+              </article>
+
+              <article>
+                <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                <div><h3>Git</h3><p>Intermediate</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- New Shopping Cart project (Java-user provided link) -->
-    <div class="color-container">
-      <img src="assets/project-shoppingcart.png" alt="Shopping Cart Project" class="project-img">
-      <h3 class="project-title">Shopping Cart</h3>
-      <p style="text-align:center; margin:0.5rem 0;">Shopping Cart application — frontend + cart logic; repo linked below.</p>
-      <div class="btn-container" style="justify-content:center; margin-top:1rem;">
-        <button class="btn btn-color-2" onclick="window.open('https://github.com/Akash77312/Shoping_Cart-App','_blank')">Github</button>
-        <button class="btn btn-color-2" onclick="window.open('https://github.com/Akash77312/Shoping_Cart-App','_blank')">View</button>
+      <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'" />
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <!-- Kept original E-Commerce (MERN) project unchanged -->
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img src="./assets/project-1.jpeg" alt="Project 1" class="project-img" />
+            </div>
+            <h2 class="experience-sub-title project-title">E-Commerce</h2>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Akash77312/E-comm.git'">Github</button>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://e-comm-weld-two.vercel.app/'">Live Demo</button>
+            </div>
+          </div>
+
+          <!-- Original TO-Do project kept -->
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img src="./assets/project-2.png" alt="Project 2" class="project-img" />
+            </div>
+            <h2 class="experience-sub-title project-title">TO-Do</h2>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Github</button>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Live Demo</button>
+            </div>
+          </div>
+
+          <!-- New Shopping Cart project added — re-uses project-2.png (no new images required) -->
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img src="./assets/project-2.png" alt="Shopping Cart Project" class="project-img" />
+            </div>
+            <h2 class="experience-sub-title project-title">Shopping Cart</h2>
+            <p style="text-align:center; margin:0.5rem 0;">Shopping Cart application — repo linked below.</p>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Akash77312/Shoping_Cart-App'">Github</button>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/Akash77312/Shoping_Cart-App'">View</button>
+            </div>
+          </div>
+
+          <!-- Original "Upcomming" card kept unchanged -->
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img src="./assets/project-2.png" alt="Project 2" class="project-img" />
+            </div>
+            <h2 class="experience-sub-title project-title">Upcomming</h2>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Github</button>
+              <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Live Demo</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Example Java backend project placeholder (optional) -->
-    <div class="color-container">
-      <img src="assets/project-java.png" alt="Java Project" class="project-img">
-      <h3 class="project-title">REST API — Sample Java Service</h3>
-      <p style="text-align:center; margin:0.5rem 0;">Sample backend API implemented with Spring Boot (CRUD, DTO mapping, persistence).</p>
-      <div class="btn-container" style="justify-content:center; margin-top:1rem;">
-        <button class="btn btn-color-2" onclick="window.open('#','_blank')">Github</button>
-        <button class="btn btn-color-2" onclick="window.open('#','_blank')">View</button>
+      <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
+          <!-- Original email preserved exactly -->
+          <p><a href="mailto:akashnsecit@gmail.com">akashnsecit@gmail.com</a></p>
+        </div>
+
+        <div class="contact-info-container">
+          <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
+          <p><a href="https://www.linkedin.com">LinkedIn</a></p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="experience-sub-title">Contact</h2>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2024 Akash Raj. All Rights Reserved.</p>
+    </footer>
 
-    <div class="contact-info-upper-container">
-      <div class="contact-info-container">
-        <img src="assets/email-icon.png" alt="email" class="email-icon" />
-        <p>akash.email@example.com</p>
-      </div>
-
-      <div class="contact-info-container">
-        <img src="assets/phone-icon.png" alt="phone" class="contact-icon" />
-        <p>+91-XXXXXXXXXX</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>© <span id="year"></span> Akash Raj — Built with HTML, CSS & JavaScript</p>
-  </footer>
-
-  <script>
-    // Toggle hamburger menu
-    function toggleMenu() {
-      const menu = document.querySelector(".menu-links");
-      const icon = document.querySelector(".hamburger-icon");
-      menu.classList.toggle("open");
-      icon.classList.toggle("open");
-    }
-
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', function(e) {
-      const menu = document.querySelector('.menu-links');
-      const icon = document.querySelector('.hamburger-icon');
-      const hamburger = document.getElementById('hamburger-nav');
-      if (!hamburger.contains(e.target)) {
-        if (menu.classList.contains('open')) {
-          menu.classList.remove('open');
-          icon.classList.remove('open');
-        }
-      }
-    });
-
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
